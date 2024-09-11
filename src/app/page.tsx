@@ -24,7 +24,6 @@ import {
 
 import { useForm, zodResolver } from "@mantine/form";
 import { z } from "zod";
-
 const schema = z
   .object({
     firstName: z
@@ -71,8 +70,9 @@ const schema = z
     }
   )
   .refine(
-    (data) => { 
+    (data) => {
       if (data.password===data.confirmPassword) return true;
+
       return false;
     },
     {
@@ -112,7 +112,7 @@ export default function Home() {
     //check the rest plans by yourself
     //TIP : check /src/app/libs/runningPlans.js
     if(form.values.coupon=="CMU2023"){
-      price = price - ((price*30)/100);
+      price = price-((price*30)/100);
     }
     //check discount here
 
@@ -129,7 +129,7 @@ export default function Home() {
         <Space h="lg" />
 
         {/* add form */}
-        <form onSubmit={form.onSubmit((v) => alert("See you at CMU Marathon"))}>
+        <form onSubmit={form.onSubmit(() => alert("See you at CMU Marathon"))}>
           <Stack gap="sm">
             <Group grow align="start">
               <TextInput
@@ -202,7 +202,7 @@ export default function Home() {
           </Stack>
         </form>
 
-        {<Footer year={2024} fullName="Natchaya Palee" studentId="660610754" /> }
+        { <Footer year={2024} fullName="Natchaya Palee" studentId="660610754" /> }
       </Container>
 
       <TermsAndCondsModal opened={opened} close={close} />
